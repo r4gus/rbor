@@ -26,6 +26,24 @@ Furthermore, serialization adheres to the [CTAP2 canonical CBOR encoding form](h
     - If two keys have different lengths, the shorter one sorts earlier.
     - If two keys have the same length, the one with the lower value in (byte-wise) lexical order sorts earlier.
 
+## Usage
+
+Requiring `rbor` exposes two methods for the aforementioned classes: `cbor_serialize` 
+and `cbor_deserialize`. Use `cbor_serialize` to translate an object into CBOR and
+`cbor_deserialize` to de-serialize CBOR data (`String` or `Array`) into a Ruby object.
+
+```irb
+3.3.5 :001 > require 'rbor'
+ => true 
+3.3.5 :002 > {1 => 2, 3 => 3}.cbor_serialize
+ => "\xA2\x01\x02\x03\x03" 
+3.3.5 :003 > "\xA2\x01\x02\x03\x03".cbor_deserialize
+ => [{1=>2, 3=>3}, []]
+```
+
+The `cbor_deserialize` method return an `Array` with two values: a de-serialized Ruby object
+and an `Array` representing the remaining bytes.
+
 ## Build
 
 ### Build gem
