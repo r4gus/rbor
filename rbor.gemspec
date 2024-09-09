@@ -10,7 +10,4 @@ Gem::Specification.new do |s|
     "https://rubygems.org/gems/rbor"
   s.metadata    = { "source_code_uri" => "https://github.com/r4gus/rbor" }
   s.license       = "MIT"
-  s.extra_rdoc_files = [
-    "README.md",
-  ]
 end
