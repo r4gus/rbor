@@ -135,10 +135,38 @@ RSpec.describe Cbor, "deserialize" do
   end
 
   context "with a simple value" do
-    it "serializes to true, false or nil" do
+    it "deserializes to true, false or nil" do
       expect("\xf4".cbor_deserialize).to eq [false, []]
       expect("\xf5".cbor_deserialize).to eq [true, []]
       expect("\xf6".cbor_deserialize).to eq [nil, []]
+    end
+  end
+
+  context "streaming" do
+    it "deserializes a map with strings as key-value-pairs" do
+      raw = "\xa5\x61\x61\x61\x41\x61\x62\x61\x42\x61\x63\x61\x43\x61\x64\x61\x44\x61\x65\x61\x45".bytes
+      i = 0
+
+      result = Cbor.cbor_streaming_read do
+        i += 1
+        raw[i - 1]
+      end
+      expected = {"a" => "A", "b" => "B", "c" => "C", "d" => "D", "e" => "E"}
+
+      expect(result).to eq expected
+    end
+
+    it "deserializes a hash map within an array" do
+      raw = "\x82\x61\x61\xa1\x61\x62\x61\x63".bytes
+      i = 0
+
+      result = Cbor.cbor_streaming_read do
+        i += 1
+        raw[i - 1]
+      end
+      expected = ["a", {"b" => "c"}]
+
+      expect(result).to eq expected
     end
   end
 end

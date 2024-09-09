@@ -4,7 +4,7 @@
 # (RFC8949). It is used in different protocols like the Client to Authenticator 
 # Protocol CTAP2 which is a essential part of FIDO2 authenticators/ Passkeys.
 
-class Cbor
+module Cbor
 
 end
 
@@ -13,3 +13,4 @@ require_relative 'rbor/string.rb'
 require_relative 'rbor/array.rb'
 require_relative 'rbor/hash.rb'
 require_relative 'rbor/bool.rb'
+require_relative 'rbor/streaming.rb'
