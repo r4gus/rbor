@@ -8,6 +8,8 @@ Gem::Specification.new do |s|
   s.files       = ["lib/rbor.rb", "lib/rbor/integer.rb", "lib/rbor/string.rb", "lib/rbor/array.rb", "lib/rbor/bool.rb", "lib/rbor/hash.rb", "README.md"]
   s.homepage    =
     "https://rubygems.org/gems/rbor"
-  s.metadata    = { "source_code_uri" => "https://github.com/r4gus/rbor" }
+  s.metadata    = { 
+    "source_code_uri" => "https://github.com/r4gus/rbor",
+  }
   s.license       = "MIT"
 end
